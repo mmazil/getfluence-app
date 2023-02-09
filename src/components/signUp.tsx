@@ -1,10 +1,12 @@
-import React, { ChangeEvent, useState } from 'react';
+import React, { ChangeEvent, useState, useCallback } from 'react';
 import { Button, Form } from 'semantic-ui-react';
+import { signUpAPI } from '../services/mock-api';
+import { userType } from '../types/user';
 
 export const SignUp = () => {
 
-  const [username, setUsername] = useState<String>();
-  const [password, setPassword] = useState<String>();
+  const [username, setUsername] = useState<String>('');
+  const [password, setPassword] = useState<String>('');
   const [disableButton, setDisableButton] = useState<boolean>(true);
 
   const handleUsername = (e: ChangeEvent<HTMLInputElement>) => {
@@ -23,9 +25,17 @@ export const SignUp = () => {
     }
   }
 
-  const handleSignUp = () => {
-    console.log('click!')
-  }
+  const handleSignUp = useCallback(async () => {
+    const data: userType = {
+      username,
+      password
+    }
+
+    const result: any = await signUpAPI(data).catch(e => console.error(e));
+    
+    localStorage.setItem('username', result.username);
+    localStorage.setItem('createdAt', result.createdAt);
+  }, [username, password])
 
   return (
     <Form>

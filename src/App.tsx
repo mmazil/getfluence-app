@@ -8,9 +8,12 @@ import { SignIn } from './components/signIn';
 import { Profile } from './components/profile';
 
 function App() {
+
+  const username = localStorage.getItem('username');
+
   return (
     <Container>
-      <SignUp />
+      { username ? <SignIn /> : <SignUp /> }
     </Container>
   );
 }
