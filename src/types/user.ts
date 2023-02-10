@@ -1,5 +1,6 @@
-export type userType = {
-    username?: string,
-    password?: string,
-    city?: string
-} 
+export type userProfile = {
+    username: string,
+    password: string,
+    city?: string,
+    jwt?: string
+}

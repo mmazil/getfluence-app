@@ -1,14 +1,17 @@
 import React, { ChangeEvent, useState, useCallback } from 'react';
-import { Form } from 'semantic-ui-react';
+import { Form, Button } from 'semantic-ui-react';
 import { signInAPI } from '../services/mock-api';
-import { userType } from '../types/user';
-import { Field } from './field';
-import { Button_ } from './button';
+import { userProfile } from '../types/user';
+import { Messages } from './messages';
 
-export const SignIn = () => {
+interface Props {
+  toggleLoggedIn: () => void;
+}
 
+export const SignIn = ({ toggleLoggedIn }: Props) => {
   const [username, setUsername] = useState<string>('');
   const [password, setPassword] = useState<string>('');
+  const [error, setError] = useState<string>('');
 
   const handleUsername = (e: ChangeEvent<HTMLInputElement>) => {
     setUsername(e.target.value);
@@ -19,7 +22,7 @@ export const SignIn = () => {
   }
 
   const handleSignIn = useCallback(async () => {
-    const data: userType = {
+    const data: userProfile = {
       username,
       password
     }
@@ -27,16 +30,30 @@ export const SignIn = () => {
     try{
       const result: any = await signInAPI(data);
       localStorage.setItem('jwt', result.token);
-    } catch(e) {
-      console.error(e)
+      toggleLoggedIn();
+    } catch(e: any) {
+      setError(e.message);
     }
-  }, [username, password])
+  }, [username, password, toggleLoggedIn])
   
   return (
     <Form>
-      <Field label='Username' handleInput={handleUsername}/>
-      <Field label='Password' inputType='password' handleInput={handlePassword}/>
-      <Button_ label='Sign In' handleClick={handleSignIn} />
+      { error && <Messages message={error} negative/> }
+      <Form.Field 
+        label='Username'
+        placeholder='Username'
+        control='input'
+        type='text'
+        onChange={handleUsername} 
+      />
+      <Form.Field 
+        label='Password' 
+        placeholder='Password' 
+        control='input' 
+        type='password' 
+        onChange={handlePassword} 
+      />
+      <Button onClick={handleSignIn} primary fluid>Sign In</Button>
     </Form>
   );
 }

@@ -1,0 +1,62 @@
+.form {
+  width: 500px !important;
+}
+
+.times {
+  width:150px;
+  height:300px;
+  float:right;
+  overflow-y: scroll;
+}
+
+.times span {
+  text-align: center;
+  padding: 10px;
+  cursor: pointer;
+  display: block;
+}
+
+.times span:hover {
+  background-color: #f7f6fb;
+  border-radius: 5px;
+  font-weight: bold;
+}
+
+.date {
+  width:350px;
+  height:300px;
+  float:left;
+}
+
+.react-datepicker__current-month {
+  color: #1578c2;
+}
+
+.react-datepicker, .react-datepicker__header  {
+  border: none !important;
+  font-size: 14px;
+}
+
+.react-datepicker, .react-datepicker__month-container {
+  width: 100%;
+  height: 300px;
+}
+
+.react-datepicker__day-name, .react-datepicker__day, .react-datepicker__time-name {
+  margin: 0.75rem !important;
+}
+
+.react-datepicker__header {
+  background-color: #fff !important;
+}
+
+.react-datepicker__day--selected:hover, .react-datepicker__day--in-selecting-range:hover, .react-datepicker__day--in-range:hover, .react-datepicker__month-text--selected:hover, .react-datepicker__month-text--in-selecting-range:hover, .react-datepicker__month-text--in-range:hover, .react-datepicker__quarter-text--selected:hover, .react-datepicker__quarter-text--in-selecting-range:hover, .react-datepicker__quarter-text--in-range:hover, .react-datepicker__year-text--selected:hover, .react-datepicker__year-text--in-selecting-range:hover, .react-datepicker__year-text--in-range:hover {
+  background-color: #f7f6fb;
+  color: #000;
+}
+
+.react-datepicker__day--selected, .react-datepicker__day--in-selecting-range, .react-datepicker__day--in-range, .react-datepicker__month-text--selected, .react-datepicker__month-text--in-selecting-range, .react-datepicker__month-text--in-range, .react-datepicker__quarter-text--selected, .react-datepicker__quarter-text--in-selecting-range, .react-datepicker__quarter-text--in-range, .react-datepicker__year-text--selected, .react-datepicker__year-text--in-selecting-range, .react-datepicker__year-text--in-range {
+  background-color: #f7f6fb;
+  color: #000;
+  font-weight: bold;
+}
