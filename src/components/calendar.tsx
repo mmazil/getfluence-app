@@ -23,8 +23,8 @@ export const Calendar = ({ handleShowProfile }: Props) => {
     return rows;
   }
 
-  const handleTime = (e: any) => {
-    setTime(e.target.textContent);
+  const handleTime = (e: React.MouseEvent<HTMLSpanElement>) => {
+    setTime(e.currentTarget.textContent as string);
   }
 
   const handleSchedule = () => {
