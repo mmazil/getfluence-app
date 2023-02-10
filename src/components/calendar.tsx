@@ -65,8 +65,8 @@ export const Calendar = ({ handleShowProfile }: Props) => {
           />
         </div>
         <div className='times'>
-          {times().map(t => <span onClick={handleTime}>{t}:00 AM</span>)}
-          {times().map(t => <span onClick={handleTime}>{t}:00 PM</span>)}
+          {times().map((t, i) => <span key={i} onClick={handleTime}>{t}:00 AM</span>)}
+          {times().map((t, i) => <span key={i} onClick={handleTime}>{t}:00 PM</span>)}
         </div>
         </Form.Group>
         <Form.Group style={{paddingLeft: "10px"}}>

@@ -1,12 +1,17 @@
 .form {
   width: 500px !important;
+  border: 1px solid #eff0f1;
+  padding: 20px;
+  border-radius: 10px;
 }
 
 .times {
-  width:150px;
+  width:140px;
   height:300px;
   float:right;
   overflow-y: scroll;
+  border: 1px solid #eff0f1;
+  border-radius: 10px;
 }
 
 .times span {
@@ -23,9 +28,10 @@
 }
 
 .date {
-  width:350px;
+  width:340px;
   height:300px;
   float:left;
+  margin-right: 5px;
 }
 
 .react-datepicker__current-month {
@@ -35,6 +41,11 @@
 .react-datepicker, .react-datepicker__header  {
   border: none !important;
   font-size: 14px;
+}
+
+.react-datepicker{
+  border: 1px solid #eff0f1 !important;
+  border-radius: 10px;
 }
 
 .react-datepicker, .react-datepicker__month-container {
