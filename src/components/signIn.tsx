@@ -1,7 +1,9 @@
 import React, { ChangeEvent, useState, useCallback } from 'react';
-import { Button, Form } from 'semantic-ui-react';
+import { Form } from 'semantic-ui-react';
 import { signInAPI } from '../services/mock-api';
 import { userType } from '../types/user';
+import { Field } from './field';
+import { Button_ } from './button';
 
 export const SignIn = () => {
 
@@ -22,20 +24,19 @@ export const SignIn = () => {
       password
     }
 
-    const result: any = await signInAPI(data).catch(e => console.error(e));
-    localStorage.setItem('jwt', result.token);
+    try{
+      const result: any = await signInAPI(data);
+      localStorage.setItem('jwt', result.token);
+    } catch(e) {
+      console.error(e)
+    }
   }, [username, password])
+  
   return (
     <Form>
-      <Form.Field>
-        <label>Username</label>
-        <input placeholder='Username' onChange={handleUsername}/>
-      </Form.Field>
-      <Form.Field>
-        <label>Password</label>
-        <input placeholder='Password' type='password' onChange={handlePassword}/>
-      </Form.Field>
-      <Button primary onClick={handleSignIn} fluid>Sign In</Button>
+      <Field label='Username' handleInput={handleUsername}/>
+      <Field label='Password' inputType='password' handleInput={handlePassword}/>
+      <Button_ label='Sign In' handleClick={handleSignIn} />
     </Form>
   );
 }

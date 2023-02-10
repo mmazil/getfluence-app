@@ -1,5 +1,7 @@
 import React, { ChangeEvent, useState } from 'react';
-import { Button, Form } from 'semantic-ui-react';
+import { Form } from 'semantic-ui-react';
+import { Field } from './field';
+import { Button_ } from './button';
 
 export const Profile = () => {
 
@@ -25,33 +27,18 @@ export const Profile = () => {
   const handleConfirmePassword = (e: ChangeEvent<HTMLInputElement>) => {
   }
 
-  const handleUpdate = () => {
+  const handleUpdateProfile = () => {
     console.log('click!')
   }
 
   return (
     <Form>
-      <Form.Field>
-        <label>Username</label>
-        <input placeholder='Username' onChange={handleUsername}/>
-      </Form.Field>
-      <Form.Field>
-        <label>City</label>
-        <input placeholder='City' onChange={handleCity}/>
-      </Form.Field>
-      <Form.Field>
-        <label>Old Password</label>
-        <input placeholder='Old Password' type='password' onChange={handleOldPassword}/>
-      </Form.Field>
-      <Form.Field>
-        <label>New Password</label>
-        <input placeholder='New Password' type='password' onChange={handleNewPassword}/>
-      </Form.Field>
-      <Form.Field>
-        <label>Confirme Password</label>
-        <input placeholder='Confirme Password' type='password' onChange={handleConfirmePassword}/>
-      </Form.Field>
-      <Button primary onClick={handleUpdate} fluid>Update Profile</Button>
+      <Field label='Username' handleInput={handleUsername}/>
+      <Field label='City' handleInput={handleCity}/>
+      <Field label='Old Password' handleInput={handleOldPassword}/>
+      <Field label='New Password' handleInput={handleNewPassword}/>
+      <Field label='Confirme Password' handleInput={handleConfirmePassword}/>
+      <Button_ label='Update Profile' handleClick={handleUpdateProfile} />
     </Form>
   );
 }

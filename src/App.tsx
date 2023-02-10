@@ -1,19 +1,16 @@
 import React from 'react';
-import './App.css';
-import 'semantic-ui-css/semantic.min.css';
 import { Container } from 'semantic-ui-react'
-
-import { SignUp} from './components/signUp';
 import { SignIn } from './components/signIn';
 import { Profile } from './components/profile';
 
+import 'semantic-ui-css/semantic.min.css';
+import './App.css';
+
 function App() {
-
-  const username = localStorage.getItem('username');
-
+  const jwt = localStorage.getItem('jwt');
   return (
     <Container>
-      { username ? <SignIn /> : <SignUp /> }
+      { jwt ? <Profile /> : <SignIn /> }
     </Container>
   );
 }
