@@ -5,8 +5,8 @@ import { userType } from '../types/user';
 
 export const SignUp = () => {
 
-  const [username, setUsername] = useState<String>('');
-  const [password, setPassword] = useState<String>('');
+  const [username, setUsername] = useState<string>('');
+  const [password, setPassword] = useState<string>('');
   const [disableButton, setDisableButton] = useState<boolean>(true);
 
   const handleUsername = (e: ChangeEvent<HTMLInputElement>) => {
@@ -34,6 +34,7 @@ export const SignUp = () => {
     const result: any = await signUpAPI(data).catch(e => console.error(e));
     
     localStorage.setItem('username', result.username);
+    localStorage.setItem('password', result.password);
     localStorage.setItem('createdAt', result.createdAt);
   }, [username, password])
 

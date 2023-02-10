@@ -1,5 +1,5 @@
 export type userType = {
-    username: String,
-    password: String,
-    city?: String
+    username?: string,
+    password?: string,
+    city?: string
 } 
