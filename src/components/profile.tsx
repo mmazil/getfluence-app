@@ -1,4 +1,3 @@
-import { isDisabled } from '@testing-library/user-event/dist/utils';
 import React, { ChangeEvent, useEffect, useState } from 'react';
 import { Form, Button } from 'semantic-ui-react';
 import { getUserDataAPI, updateUserDataAPI } from '../services/mock-api';
@@ -14,26 +13,25 @@ export const Profile = ({ handleShowProfile }: Props) => {
   const [city, setCity] = useState<string>('');
   const [newPassword, setNewPassword] = useState<string>('');
   const [confirmePassword, setConfirmePassword] = useState<string>('');
-  const [disableButton, setdisableButton] = useState<boolean>(false);
   const [error, setError] = useState<string>('');
   const [success, setSuccess] = useState<string>('');
 
-  const handleUsername = (e: ChangeEvent<HTMLInputElement>) => {
+  const handleUsernameChange = (e: ChangeEvent<HTMLInputElement>) => {
     setUsername(e.target.value);
   }
-  const handleCity = (e: ChangeEvent<HTMLInputElement>) => {
+  const handleCityChange = (e: ChangeEvent<HTMLInputElement>) => {
     setCity(e.target.value);
   }
   
-  const handleNewPassword = (e: ChangeEvent<HTMLInputElement>) => {
+  const handleNewPasswordChange = (e: ChangeEvent<HTMLInputElement>) => {
     setNewPassword(e.target.value);
   }
   
-  const handleConfirmePassword = (e: ChangeEvent<HTMLInputElement>) => {
+  const handleConfirmePasswordChange = (e: ChangeEvent<HTMLInputElement>) => {
     setConfirmePassword(e.target.value);
   }
   
-  const handleUpdateProfile = async () => {
+  const handleUpdateProfileSubmit = async () => {
     if(newPassword !== confirmePassword) return setError('The confirme password is unmatched!');
 
     const jwt = localStorage.getItem('jwt') || '';
@@ -51,6 +49,7 @@ export const Profile = ({ handleShowProfile }: Props) => {
       setError('');
     } catch (e: any) {
       setError(e.message);
+      setSuccess('');
     }
   }
 
@@ -62,6 +61,7 @@ export const Profile = ({ handleShowProfile }: Props) => {
         setCity(user.city);
       } catch (e: any) {
         setError(e.message);
+        setSuccess('');
       }
     }
     fetchData();
@@ -81,7 +81,7 @@ export const Profile = ({ handleShowProfile }: Props) => {
         control='input'
         type='text'
         value={username}
-        onChange={handleUsername}
+        onChange={handleUsernameChange}
       />
       <Form.Field 
         label='City'
@@ -89,25 +89,25 @@ export const Profile = ({ handleShowProfile }: Props) => {
         control='input'
         type='text'
         value={city}
-        onChange={handleCity}
+        onChange={handleCityChange}
       />
       <Form.Field 
         label='New Password' 
         placeholder='New Password' 
         control='input' 
         type='password'
-        onChange={handleNewPassword}
+        onChange={handleNewPasswordChange}
       />
       <Form.Field 
         label='Confirme Password' 
         placeholder='Confirme Password' 
         control='input' 
         type='password' 
-        onChange={handleConfirmePassword} 
+        onChange={handleConfirmePasswordChange} 
       />
-      <Button 
-        onClick={handleUpdateProfile}
-        disabled={disableButton}
+      <Button
+        type='submit'
+        onClick={handleUpdateProfileSubmit}
         primary
         fluid
       >Update Profile</Button>

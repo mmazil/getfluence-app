@@ -13,15 +13,15 @@ export const SignIn = ({ toggleLoggedIn }: Props) => {
   const [password, setPassword] = useState<string>('');
   const [error, setError] = useState<string>('');
 
-  const handleUsername = (e: ChangeEvent<HTMLInputElement>) => {
+  const handleUsernameChange = (e: ChangeEvent<HTMLInputElement>) => {
     setUsername(e.target.value);
   }
 
-  const handlePassword = (e: ChangeEvent<HTMLInputElement>) => {
+  const handlePasswordChange = (e: ChangeEvent<HTMLInputElement>) => {
     setPassword(e.target.value)
   }
 
-  const handleSignIn = useCallback(async () => {
+  const handleSignInSubmit = useCallback(async () => {
     const data: userProfile = {
       username,
       password
@@ -44,16 +44,16 @@ export const SignIn = ({ toggleLoggedIn }: Props) => {
         placeholder='Username'
         control='input'
         type='text'
-        onChange={handleUsername} 
+        onChange={handleUsernameChange} 
       />
       <Form.Field 
         label='Password' 
         placeholder='Password' 
         control='input' 
         type='password' 
-        onChange={handlePassword} 
+        onChange={handlePasswordChange} 
       />
-      <Button onClick={handleSignIn} primary fluid>Sign In</Button>
+      <Button type='submit' onClick={handleSignInSubmit} primary fluid>Sign In</Button>
     </Form>
   );
 }
