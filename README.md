@@ -25,6 +25,12 @@ Check your localhost at:
 ```
 http://localhost:3000
 ```
+To Sign in for the first time use the default user credentials
+
+```
+username: admin
+password: admin
+```
 
 🎉
 
